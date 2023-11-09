@@ -1,12 +1,4 @@
-import fastify from 'fastify';
-import { userRouter } from './Routes/router';
-
-const app = fastify();
-app.register(userRouter);
-
-app.get('/', (request, response) => {
-    response.send('Hello World');
-});
+import { app } from './app';
 
 app.listen({ port: 3001 }, (err) => {
     if (err) {
@@ -15,3 +7,4 @@ app.listen({ port: 3001 }, (err) => {
     }
     console.log(`Server is running on port ${3000}`);
 });
+

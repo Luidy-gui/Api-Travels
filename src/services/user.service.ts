@@ -14,10 +14,10 @@ export class UserService {
     constructor(private usersRepository: UserRepository) { }
 
     async create({ name, email, password, profileImage }: User) {
-        const userAlredyExists = await this.usersRepository.findByEmail(email);
+        const userAlredyExists = await this.findByEmail(email);
 
         if (userAlredyExists) {
-            throw new CustomError('User alredy exists', 409);
+            throw new CustomError('User Alredy Exists', 409);
         }
 
         const passwordHash = await bcrypt.hash(password, 10);
@@ -25,5 +25,9 @@ export class UserService {
         const user = this.usersRepository.create({ name, email, password: passwordHash, profileImage });
 
         return user;
+    }
+
+    findByEmail(email: string) {
+        return this.usersRepository.findByEmail(email);
     }
 }
