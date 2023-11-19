@@ -1,11 +1,9 @@
 import fastify from 'fastify';
-import { userRouter } from './Routes/router';
+import { testimonialRoutes, userRouter } from './Routes/router';
 
 const app = fastify();
 app.register(userRouter);
+app.register(testimonialRoutes);
 
-app.get('/', (request, response) => {
-    response.send('Hello World');
-});
 
 export { app };

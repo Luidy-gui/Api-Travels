@@ -7,4 +7,3 @@ app.listen({ port: 3001 }, (err) => {
     }
     console.log(`Server is running on port ${3000}`);
 });
-
