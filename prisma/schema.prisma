@@ -11,13 +11,25 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(uuid())
+  id           String        @id @default(uuid())
   name         String
-  email        String   @unique
+  email        String        @unique
   password     String
   profileImage String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  testimonials Testimonial[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   @@map("users")
+}
+
+model Testimonial {
+  id          String   @id @default(uuid())
+  testimonial String
+  user        User     @relation(fields: [user_id], references: [id])
+  user_id     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("testimonials")
 }
